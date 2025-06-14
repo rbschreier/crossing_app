@@ -36,7 +36,7 @@ swell_period_min = st.sidebar.slider("Min Swell Period (sec)", 5, 20, 9)
 # Fetch Forecast Data from Stormglass API
 # --------------------------
 
-api_key = '405fd7f4-47a0-11f0-ac6f-0242ac130006-405fd876-47a0-11f0-ac6f-0242ac130006'
+api_key = st.secrets["API_KEY"]
 
 lat = 34.4
 lon = -119.7
