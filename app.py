@@ -2,10 +2,11 @@
 # Powered by Stormglass API - 10-Day Forecast
 # Author: You!
 
+import json
 import streamlit as st
 import requests
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 
 # --------------------------
 # App Configuration
@@ -18,7 +19,7 @@ st.markdown(
     "This app provides a **10-day forward forecast** for the Santa Barbara Channel "
     "using the [Stormglass.io](https://stormglass.io) Marine API.\n\n"
     "Forecast includes **wind, cloud cover, swell height, swell period, and swell direction** "
-    "to help plan safe and comfortable crossings."
+    "to help find days for Dee."
 )
 
 # --------------------------
@@ -36,17 +37,18 @@ swell_period_min = st.sidebar.slider("Min Swell Period (sec)", 5, 20, 9)
 # Fetch Forecast Data from Stormglass API
 # --------------------------
 
-api_key = st.secrets["API_KEY"]
-
+# api_key = st.secrets["API_KEY"]
+api_key = "405fd7f4-47a0-11f0-ac6f-0242ac130006-405fd876-47a0-11f0-ac6f-0242ac130006"
 lat = 34.4
 lon = -119.7
 
-start_date = datetime.utcnow()
+start_date = datetime.now()
 end_date = start_date + timedelta(days=10)
 
 start_iso = start_date.isoformat() + 'Z'
 end_iso = end_date.isoformat() + 'Z'
 
+# I assume these are the API parameters for the Stormglass API
 params = [
     'swellHeight',
     'swellPeriod',
@@ -64,6 +66,7 @@ url = (
     f"&source=noaa"
 )
 
+#LIVE API DATA
 response = requests.get(
     url,
     headers={
@@ -74,8 +77,18 @@ response = requests.get(
 if response.status_code != 200:
     st.error(f"Error fetching data from Stormglass API: {response.status_code} {response.text}")
     st.stop()
-
 data = response.json()
+
+
+# DUMMY DATA LOAD FROM FILE
+# with open("dummy_data.json", "r") as f:
+#    data = json.load(f)
+
+
+
+# DUMMY DATA: Save the raw API response to a file for dummy data
+#with open("dummy_data.json", "w") as f:
+#    json.dump(response.json(), f, indent=2)
 
 # --------------------------
 # Process Data - Aggregate Daily Values
