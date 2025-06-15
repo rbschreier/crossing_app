@@ -1,6 +1,6 @@
 # Channel Cross - Santa Barbara Channel Crossing Planner
 # Powered by Stormglass API - 10-Day Forecast
-# Author: You!
+# Author: ME!
 
 import json
 import streamlit as st
