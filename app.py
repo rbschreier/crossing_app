@@ -16,10 +16,15 @@ st.set_page_config(page_title="Channel Cross", page_icon="🛥️",layout="wide"
 st.title("Channel Cross - 10-Day Marine Forecast (Powered by Stormglass)")
 
 st.markdown(
-    "This app provides a **10-day forward forecast** for the Santa Barbara Channel "
-    "using the [Stormglass.io](https://stormglass.io) Marine API.\n\n"
-    "Forecast includes **wind, cloud cover, swell height, swell period, and swell direction** "
-    "to help find days for Dee."
+    """
+    <div style='font-family: Arial'>
+    This app provides a <b>10-day forward forecast</b> for the Santa Barbara Channel 
+    using the <a href="https://stormglass.io">Stormglass.io</a> Marine API.<br><br>
+    Forecast includes <b>wind, cloud cover, swell height, swell period, and swell direction</b> 
+    to help find days for Dee trips.
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 # --------------------------
